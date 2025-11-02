@@ -2,6 +2,8 @@ package br.com.royalpair.nivis.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "ENDERECO")
 public class Endereco {
@@ -9,9 +11,7 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_ENDERECO")
     @SequenceGenerator(name = "SEQ_ENDERECO", sequenceName = "SEQ_ENDERECO", allocationSize = 1)
     @Column(name = "ID_ENDERECO")
-    private int idEndereco;
-    @Column(name = "ID_USUARIO", nullable = false)
-    private int idUsusario;
+    private Long idEndereco;
     @Column(nullable = false, length = 300)
     private String logadouro;
     @Column(nullable = false, length = 20)
@@ -29,20 +29,14 @@ public class Endereco {
     @Column(nullable = true, length =100)
     private String complemento;
 
+    @OneToMany(mappedBy = "endereco")
+    private List<Usuario> usuarios;
 
-    public int getIdUsusario() {
-        return idUsusario;
-    }
-
-    public void setIdUsusario(int idUsusario) {
-        this.idUsusario = idUsusario;
-    }
-
-    public int getIdEndereco() {
+    public Long getIdEndereco() {
         return idEndereco;
     }
 
-    public void setIdEndereco(int idEndereco) {
+    public void setIdEndereco(Long idEndereco) {
         this.idEndereco = idEndereco;
     }
 

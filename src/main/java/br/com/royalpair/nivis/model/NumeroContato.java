@@ -9,9 +9,7 @@ public class NumeroContato {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "SEQ_NUMERO_CONTATO", sequenceName = "SEQ_NUMERO_CONTATO", allocationSize = 1)
     @Column(name = "ID_NUMERO")
-    private int idNumero;
-    @Column(name = "ID_USUARIO", nullable = false)
-    private int idUser;
+    private Long idNumero;
     @Column(name = "CD_PAIS",nullable = false)
     private String pais;
     @Column(name = "CD_REGIAO",nullable = false)
@@ -19,20 +17,24 @@ public class NumeroContato {
     @Column(name = "CD_NUMERO",nullable = false)
     private String numero;
 
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "USUARIO_ID_USUARIO")
+    private Usuario idUser;
 
-    public int getIdNumero() {
+    public Long getIdNumero() {
         return idNumero;
     }
 
-    public void setIdNumero(int idNumero) {
+    public void setIdNumero(Long idNumero) {
         this.idNumero = idNumero;
     }
 
-    public int getIdUser() {
+    public Usuario getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Usuario idUser) {
         this.idUser = idUser;
     }
 

@@ -3,17 +3,17 @@ package br.com.royalpair.nivis.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "DENDRON")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Dendron {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_DENDRON")
     @SequenceGenerator(name = "SEQ_DENDRON", sequenceName = "SEQ_DENDRON", allocationSize = 1)
-    private int id;
-    @Column(name = "ID_USUARIO", nullable = false)
-    private int idUser;
+    private Long id;
     @Column(length = 30, nullable = false)
     private String nome;
     @Column(length = 70,nullable = true)
@@ -22,19 +22,28 @@ public abstract class Dendron {
     private LocalDate dataCriacao;
 
 
-    public int getId() {
+    @ManyToOne
+    @MapsId
+    @JoinColumn(name = "ID_USUARIO")
+    private Usuario idUser;
+
+    @OneToMany (mappedBy = "idDendron")
+    private List<Soma> somas;
+
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getIdUser() {
+    public Usuario getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(int idUser) {
+    public void setIdUser(Usuario idUser) {
         this.idUser = idUser;
     }
 
@@ -62,4 +71,12 @@ public abstract class Dendron {
         this.dataCriacao = dataCriacao;
     }
     public abstract void criarDendron();
+
+    public List<Soma> getSomas() {
+        return somas;
+    }
+
+    public void setSomas(List<Soma> somas) {
+        this.somas = somas;
+    }
 }

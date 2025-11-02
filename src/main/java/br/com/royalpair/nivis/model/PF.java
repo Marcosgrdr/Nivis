@@ -2,6 +2,7 @@ package br.com.royalpair.nivis.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 import java.time.LocalDate;
@@ -9,8 +10,9 @@ import java.util.Scanner;
 
 @Entity
 @Table(name = "PF")
+@PrimaryKeyJoinColumn(name = "USUARIO_ID_USUARIO")
 public class PF extends Usuario{
-    Scanner input = new Scanner(System.in);
+   // Scanner input = new Scanner(System.in);
 
     @Column(nullable = false, length = 100)
     private String nome;
@@ -21,10 +23,10 @@ public class PF extends Usuario{
     @Override
     public void criarUsuario() {
         System.out.println("Defina sua data de nascimeto: ");
-        String dd= input.nextLine();
-        String mm= input.nextLine();
-        String yy= input.nextLine();
-        dataNascimento = dd+"/"+mm+"/"+yy;
+//        String dd= input.nextLine();
+//        String mm= input.nextLine();
+//        String yy= input.nextLine();
+//        dataNascimento = dd+"/"+mm+"/"+yy;
 
     }
 

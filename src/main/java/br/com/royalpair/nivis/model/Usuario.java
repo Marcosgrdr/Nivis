@@ -6,11 +6,12 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "USUARIO")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USUARIO")
     @SequenceGenerator(name = "SEQ_USUARIO", sequenceName = "SEQ_USUARIO", allocationSize = 1)
-    private int id;
+    private Long id;
 
     @Column(nullable = false, length = 100)
     private String email;
@@ -20,19 +21,27 @@ public abstract class Usuario {
     private String caminhoImgPerfil;
     @Column(name = "DATA_CADASTRO")
     private LocalDate dataCadastro;
-    @Column(nullable = false)
-    private NumeroContato numeroContato;
-    @Column(nullable = false)
+
+    //Relações (só pra me organizar)
+    @ManyToOne
+    @JoinColumn(name = "ENDERECO_ID_ENDERECO")
     private Endereco endereco;
 
+    @OneToOne(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    private NumeroContato numeroContato;
+
+    @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Soma soma;
+
+    @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
 
     public abstract void criarUsuario();
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -69,19 +78,19 @@ public abstract class Usuario {
         this.dataCadastro = dataCadastro;
     }
 
-    public NumeroContato getNumeroContato() {
-        return numeroContato;
-    }
-
-    public void setNumeroContato(NumeroContato numeroContato) {
-        this.numeroContato = numeroContato;
-    }
-
     public Endereco getEndereco() {
         return endereco;
     }
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
+    }
+
+    public NumeroContato getNumeroContato() {
+        return numeroContato;
+    }
+
+    public void setNumeroContato(NumeroContato numeroContato) {
+        this.numeroContato = numeroContato;
     }
 }

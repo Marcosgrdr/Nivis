@@ -2,10 +2,12 @@ package br.com.royalpair.nivis.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "VP")
+@PrimaryKeyJoinColumn(name = "ID_DENDRON")
 public class VP extends Dendron{
     @Column(name = "VALOR_TOTAL", nullable = false)
     private double valorTotal;
@@ -20,10 +22,10 @@ public class VP extends Dendron{
     public void soma(){
 
     }
-    public void somaManual(int idDendron, int idSoma){
+    public void somaManual(Long idDendron, Long idSoma){
 
     }
-    public void somaManual(String nome,int idDendron, int idSoma){
+    public void somaManual(String nome,Long idDendron, Long idSoma){
 
     }
     //-------------------------------------------------------------------------------
