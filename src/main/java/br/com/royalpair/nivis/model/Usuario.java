@@ -3,6 +3,7 @@ package br.com.royalpair.nivis.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "USUARIO")
@@ -11,15 +12,16 @@ public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USUARIO")
     @SequenceGenerator(name = "SEQ_USUARIO", sequenceName = "SEQ_USUARIO", allocationSize = 1)
+    @Column(name = "ID_USUARIO", length = 6)
     private Long id;
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "EMAIL", nullable = false, length = 100)
     private String email;
-    @Column(nullable = false, length = 20)
+    @Column(name = "SENHA", nullable = false, length = 25)
     private String senha;
-    @Column(nullable = true, length = 200)
+    @Column(name = "IMG", nullable = true, length = 200)
     private String caminhoImgPerfil;
-    @Column(name = "DATA_CADASTRO")
+    @Column(name = "DATA_CADASTRO", nullable = false)
     private LocalDate dataCadastro;
 
     //Relações (só pra me organizar)
@@ -31,9 +33,14 @@ public abstract class Usuario {
     private NumeroContato numeroContato;
 
     @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Soma soma;
+    private List<Dendron> dendron;
 
     @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Soma> soma;
+
+    @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SomaVP> somaVPS;
+
 
     public abstract void criarUsuario();
 
@@ -92,5 +99,29 @@ public abstract class Usuario {
 
     public void setNumeroContato(NumeroContato numeroContato) {
         this.numeroContato = numeroContato;
+    }
+
+    public List<Dendron> getDendron() {
+        return dendron;
+    }
+
+    public void setDendron(List<Dendron> dendron) {
+        this.dendron = dendron;
+    }
+
+    public List<Soma> getSoma() {
+        return soma;
+    }
+
+    public void setSoma(List<Soma> soma) {
+        this.soma = soma;
+    }
+
+    public List<SomaVP> getSomaManuals() {
+        return somaVPS;
+    }
+
+    public void setSomaManuals(List<SomaVP> somaVPS) {
+        this.somaVPS = somaVPS;
     }
 }

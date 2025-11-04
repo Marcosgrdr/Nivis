@@ -45,4 +45,6 @@ public class PJ extends Usuario{
     public void setDataAbertura(String dataAbertura) {
         this.dataAbertura = dataAbertura;
     }
+
+
 }

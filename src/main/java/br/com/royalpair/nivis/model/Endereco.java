@@ -103,4 +103,12 @@ public class Endereco {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+
+    public List<Usuario> getUsuarios() {
+        return usuarios;
+    }
+
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
 }

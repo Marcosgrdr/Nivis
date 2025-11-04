@@ -13,22 +13,20 @@ public abstract class Dendron {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_DENDRON")
     @SequenceGenerator(name = "SEQ_DENDRON", sequenceName = "SEQ_DENDRON", allocationSize = 1)
+    @Column(name = "ID_DENDRON", length = 6)
     private Long id;
-    @Column(length = 30, nullable = false)
+    @Column(name = "NOME", length = 100, nullable = false)
     private String nome;
-    @Column(length = 70,nullable = true)
+    @Column(name = "DESCRICAO", length = 100,nullable = true)
     private String descricao;
-    @Column(name = "DATA_CRIACAO")
+    @Column(name = "DATA_CRIACAO",nullable = false)
     private LocalDate dataCriacao;
 
 
     @ManyToOne
-    @MapsId
     @JoinColumn(name = "ID_USUARIO")
     private Usuario idUser;
 
-    @OneToMany (mappedBy = "idDendron")
-    private List<Soma> somas;
 
 
     public Long getId() {
@@ -72,11 +70,4 @@ public abstract class Dendron {
     }
     public abstract void criarDendron();
 
-    public List<Soma> getSomas() {
-        return somas;
-    }
-
-    public void setSomas(List<Soma> somas) {
-        this.somas = somas;
-    }
 }

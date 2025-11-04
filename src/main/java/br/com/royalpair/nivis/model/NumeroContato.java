@@ -17,7 +17,7 @@ public class NumeroContato {
     @Column(name = "CD_NUMERO",nullable = false)
     private String numero;
 
-    @OneToOne
+    @ManyToOne
     @MapsId
     @JoinColumn(name = "USUARIO_ID_USUARIO")
     private Usuario idUser;
@@ -61,4 +61,6 @@ public class NumeroContato {
     public void setNumero(String numero) {
         this.numero = numero;
     }
+
+
 }
