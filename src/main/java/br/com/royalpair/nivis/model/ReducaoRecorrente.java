@@ -1,4 +1,4 @@
-package br.com.royalpair.nivis.model;
-
-public class ReducaoRecorrente {
-}
+//package br.com.royalpair.nivis.model;
+//
+//public class ReducaoRecorrente {
+//}

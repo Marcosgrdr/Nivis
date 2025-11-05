@@ -29,12 +29,12 @@ public abstract class Usuario {
     private LocalDate dataCadastro;
 
 
-    @ManyToOne
-    @JoinColumn(name = "ID_ENDERECO")
-    private Endereco endereco;
-
-    @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<NumeroContato> numeroContato;
+//    @ManyToOne
+//    @JoinColumn(name = "ID_ENDERECO")
+//    private Endereco endereco;
+//
+//    @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<NumeroContato> numeroContato;
 
     @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Dendron> dendron;
@@ -80,21 +80,21 @@ public abstract class Usuario {
         this.dataCadastro = dataCadastro;
     }
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
-    public List<NumeroContato> getNumeroContato() {
-        return numeroContato;
-    }
-
-    public void setNumeroContato(List<NumeroContato> numeroContato) {
-        this.numeroContato = numeroContato;
-    }
+//    public Endereco getEndereco() {
+//        return endereco;
+//    }
+//
+//    public void setEndereco(Endereco endereco) {
+//        this.endereco = endereco;
+//    }
+//
+//    public List<NumeroContato> getNumeroContato() {
+//        return numeroContato;
+//    }
+//
+//    public void setNumeroContato(List<NumeroContato> numeroContato) {
+//        this.numeroContato = numeroContato;
+//    }
 
     public List<Dendron> getDendron() {
         return dendron;
