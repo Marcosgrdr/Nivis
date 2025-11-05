@@ -26,23 +26,16 @@ public abstract class Usuario {
 
     //Relações (só pra me organizar)
     @ManyToOne
-    @JoinColumn(name = "ENDERECO_ID_ENDERECO")
+    @JoinColumn(name = "ID_ENDERECO")
     private Endereco endereco;
 
-    @OneToOne(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private NumeroContato numeroContato;
 
     @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Dendron> dendron;
 
-    @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Soma> soma;
 
-    @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<SomaVP> somaVPS;
-
-
-    public abstract void criarUsuario();
 
     public Long getId() {
         return id;
@@ -109,19 +102,4 @@ public abstract class Usuario {
         this.dendron = dendron;
     }
 
-    public List<Soma> getSoma() {
-        return soma;
-    }
-
-    public void setSoma(List<Soma> soma) {
-        this.soma = soma;
-    }
-
-    public List<SomaVP> getSomaManuals() {
-        return somaVPS;
-    }
-
-    public void setSomaManuals(List<SomaVP> somaVPS) {
-        this.somaVPS = somaVPS;
-    }
 }

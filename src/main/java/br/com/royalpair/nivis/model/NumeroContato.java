@@ -8,17 +8,19 @@ public class NumeroContato {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name = "SEQ_NUMERO_CONTATO", sequenceName = "SEQ_NUMERO_CONTATO", allocationSize = 1)
-    @Column(name = "ID_NUMERO")
+    @Column(name = "ID_NUMERO", length = 6)
     private Long idNumero;
-    @Column(name = "CD_PAIS",nullable = false)
+
+    @Column(name = "CD_PAIS",nullable = false, length = 50)
     private String pais;
-    @Column(name = "CD_REGIAO",nullable = false)
+
+    @Column(name = "CD_REGIAO",nullable = false, length = 50)
     private String regiao;
-    @Column(name = "CD_NUMERO",nullable = false)
+
+    @Column(name = "CD_NUMERO",nullable = false, length = 50)
     private String numero;
 
     @ManyToOne
-    @MapsId
     @JoinColumn(name = "USUARIO_ID_USUARIO")
     private Usuario idUser;
 

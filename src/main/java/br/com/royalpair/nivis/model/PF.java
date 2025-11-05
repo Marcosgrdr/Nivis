@@ -14,37 +14,14 @@ import java.util.Scanner;
 public class PF extends Usuario{
    // Scanner input = new Scanner(System.in);
 
-    @Column(nullable = false, length = 100)
+    @Column(name = "NOME", nullable = false, length = 100)
     private String nome;
-    @Column(nullable = false)
-    private String dataNascimento;
+
+    @Column(name = "DATA_NASCIMENTO", nullable = false)
+    private LocalDate dataNascimento;
 
 
-    @Override
-    public void criarUsuario() {
-        System.out.println("Defina sua data de nascimeto: ");
-//        String dd= input.nextLine();
-//        String mm= input.nextLine();
-//        String yy= input.nextLine();
-//        dataNascimento = dd+"/"+mm+"/"+yy;
 
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
 
 
 }
