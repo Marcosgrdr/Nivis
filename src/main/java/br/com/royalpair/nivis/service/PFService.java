@@ -1,10 +1,8 @@
 package br.com.royalpair.nivis.service;
-
 import br.com.royalpair.nivis.model.PF;
 import br.com.royalpair.nivis.repository.PFRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

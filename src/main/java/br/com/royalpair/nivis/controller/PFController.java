@@ -19,26 +19,23 @@ public class PFController {
     @ResponseStatus(HttpStatus.CREATED)
     public PF salvar(@RequestBody PF pessoaFisica){
         return pessoaFisicaService.salvar(pessoaFisica);
-
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PF buscarPorId(@PathVariable Long id){
         return pessoaFisicaService.buscarID(id);
-
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<PF> buscarTodos(){
         return pessoaFisicaService.buscarTodos();
-
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void excluir(@RequestBody Long id){
+    public void excluir(@PathVariable Long id){
         pessoaFisicaService.excluir(id);
     }
 
