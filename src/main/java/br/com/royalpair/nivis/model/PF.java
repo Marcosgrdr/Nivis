@@ -12,7 +12,6 @@ import java.util.Scanner;
 @Table(name = "PF")
 @PrimaryKeyJoinColumn(name = "USUARIO_ID_USUARIO")
 public class PF extends Usuario{
-   // Scanner input = new Scanner(System.in);
 
     @Column(name = "NOME", nullable = false, length = 100)
     private String nome;
@@ -21,7 +20,19 @@ public class PF extends Usuario{
     private LocalDate dataNascimento;
 
 
+    public String getNome() {
+        return nome;
+    }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
+    public LocalDate getDataNascimento() {
+        return dataNascimento;
+    }
 
+    public void setDataNascimento(LocalDate dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
 }

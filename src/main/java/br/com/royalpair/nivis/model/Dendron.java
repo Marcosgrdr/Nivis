@@ -15,10 +15,13 @@ public abstract class Dendron {
     @SequenceGenerator(name = "SEQ_DENDRON", sequenceName = "SEQ_DENDRON", allocationSize = 1)
     @Column(name = "ID_DENDRON", length = 6)
     private Long id;
+
     @Column(name = "NOME", length = 100, nullable = false)
     private String nome;
+
     @Column(name = "DESCRICAO", length = 100,nullable = true)
     private String descricao;
+
     @Column(name = "DATA_CRIACAO",nullable = false)
     private LocalDate dataCriacao;
 
@@ -28,21 +31,12 @@ public abstract class Dendron {
     private Usuario idUser;
 
 
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Usuario getIdUser() {
-        return idUser;
-    }
-
-    public void setIdUser(Usuario idUser) {
-        this.idUser = idUser;
     }
 
     public String getNome() {
@@ -68,6 +62,12 @@ public abstract class Dendron {
     public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
-    public abstract void criarDendron();
 
+    public Usuario getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(Usuario idUser) {
+        this.idUser = idUser;
+    }
 }

@@ -9,6 +9,7 @@ import java.util.List;
 @Table(name = "USUARIO")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USUARIO")
     @SequenceGenerator(name = "SEQ_USUARIO", sequenceName = "SEQ_USUARIO", allocationSize = 1)
@@ -17,24 +18,26 @@ public abstract class Usuario {
 
     @Column(name = "EMAIL", nullable = false, length = 100)
     private String email;
+
     @Column(name = "SENHA", nullable = false, length = 25)
     private String senha;
+
     @Column(name = "IMG", nullable = true, length = 200)
     private String caminhoImgPerfil;
+
     @Column(name = "DATA_CADASTRO", nullable = false)
     private LocalDate dataCadastro;
 
-    //Relações (só pra me organizar)
+
     @ManyToOne
     @JoinColumn(name = "ID_ENDERECO")
     private Endereco endereco;
 
     @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
-    private NumeroContato numeroContato;
+    private List<NumeroContato> numeroContato;
 
     @OneToMany(mappedBy = "idUser", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Dendron> dendron;
-
 
 
     public Long getId() {
@@ -44,7 +47,6 @@ public abstract class Usuario {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getEmail() {
         return email;
@@ -86,11 +88,11 @@ public abstract class Usuario {
         this.endereco = endereco;
     }
 
-    public NumeroContato getNumeroContato() {
+    public List<NumeroContato> getNumeroContato() {
         return numeroContato;
     }
 
-    public void setNumeroContato(NumeroContato numeroContato) {
+    public void setNumeroContato(List<NumeroContato> numeroContato) {
         this.numeroContato = numeroContato;
     }
 
@@ -101,5 +103,4 @@ public abstract class Usuario {
     public void setDendron(List<Dendron> dendron) {
         this.dendron = dendron;
     }
-
 }

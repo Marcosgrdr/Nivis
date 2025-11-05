@@ -5,8 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "SOMA")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TIPO_DENDRON",discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Soma {
 
     @Id
@@ -15,32 +14,16 @@ public abstract class Soma {
     @Column(name = "ID_SOMA", length = 6)
     private Long id;
 
-    @Column(name = "OBSERVACAO", nullable = true, length = 100)
-    private String observacao;
+    @Column(name = "TITULO", nullable = false, length = 30)
+    private String titulo;
 
     @Column(name = "DATA_SOMA",nullable = false)
     private LocalDate dataSoma;
 
+
     @ManyToOne
     @JoinColumn(name = "ID_DENDRON")
     private Dendron idDendron;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     public Long getId() {
@@ -51,12 +34,12 @@ public abstract class Soma {
         this.id = id;
     }
 
-    public String getObservacao() {
-        return observacao;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public LocalDate getDataSoma() {
@@ -66,7 +49,6 @@ public abstract class Soma {
     public void setDataSoma(LocalDate dataSoma) {
         this.dataSoma = dataSoma;
     }
-
 
     public Dendron getIdDendron() {
         return idDendron;
