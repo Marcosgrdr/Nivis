@@ -13,7 +13,7 @@ public abstract class Dendron {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_DENDRON")
     @SequenceGenerator(name = "SEQ_DENDRON", sequenceName = "SEQ_DENDRON", allocationSize = 1)
-    @Column(name = "ID_DENDRON", length = 6)
+    @Column(name = "ID_DENDRON")
     private Long id;
 
     @Column(name = "NOME", length = 100, nullable = false)
@@ -29,6 +29,9 @@ public abstract class Dendron {
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO")
     private Usuario idUser;
+
+    @OneToMany(mappedBy = "idDendron")
+    private List<Reducao> reducoes;
 
 
     public Long getId() {

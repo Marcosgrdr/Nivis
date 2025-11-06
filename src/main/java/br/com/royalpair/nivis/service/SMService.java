@@ -25,7 +25,7 @@ public class SMService {
     public SomaManual buscarID(Long id){
         Optional<SomaManual> sm = smRepository.findById(id);
 
-        if (sm.isEmpty()){
+        if (sm.isPresent()){
             return sm.get();
         }else {
             throw new RuntimeException("Movimentação SM não localizada");
@@ -35,7 +35,7 @@ public class SMService {
     public void excluir(Long id){
         Optional<SomaManual> sm = smRepository.findById(id);
 
-        if (sm.isEmpty()){
+        if (sm.isPresent()){
             smRepository.deleteById(id);
         }else {
             throw new RuntimeException("Movimentação SM não localizada");
@@ -45,7 +45,7 @@ public class SMService {
     public SomaManual atualizar (Long id, SomaManual sm){
         Optional<SomaManual> soma = smRepository.findById(id);
 
-        if (soma.isEmpty()){
+        if (soma.isPresent()){
             return smRepository.save(sm);
         }else {
             throw new RuntimeException("Movimentação SM não localizada");

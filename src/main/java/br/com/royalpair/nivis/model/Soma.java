@@ -11,7 +11,7 @@ public abstract class Soma {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_SOMA")
     @SequenceGenerator(name = "SEQ_SOMA", sequenceName = "SEQ_SOMA", allocationSize = 1)
-    @Column(name = "ID_SOMA", length = 6)
+    @Column(name = "ID_SOMA")
     private Long id;
 
     @Column(name = "TITULO", nullable = false, length = 30)

@@ -22,7 +22,7 @@ public class PFService {
     public PF buscarID(Long id){
         Optional<PF> pessoaFisica = pfRepository.findById(id);
 
-        if (pessoaFisica.isEmpty()){
+        if (pessoaFisica.isPresent()){
             return pessoaFisica.get();
         }else {
             throw new RuntimeException("Usuário não encontrado");
@@ -32,7 +32,7 @@ public class PFService {
     public void excluir(Long id){
         Optional<PF> pessoaFisica = pfRepository.findById(id);
 
-        if (pessoaFisica.isEmpty()){
+        if (pessoaFisica.isPresent()){
             pfRepository.deleteById(id);
         }else {
             throw new RuntimeException("Usuário não encontrado");
@@ -41,7 +41,7 @@ public class PFService {
 
     public PF atualizar(Long id, PF pessoaFisica){
         Optional<PF> pfAtual = pfRepository.findById(id);
-        if (pfAtual.isEmpty()){
+        if (pfAtual.isPresent()){
             return pfRepository.save(pessoaFisica);
         }else {
             throw new RuntimeException("Usuário não encontrado");

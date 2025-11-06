@@ -13,7 +13,7 @@ public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_USUARIO")
     @SequenceGenerator(name = "SEQ_USUARIO", sequenceName = "SEQ_USUARIO", allocationSize = 1)
-    @Column(name = "ID_USUARIO", length = 6)
+    @Column(name = "ID_USUARIO")
     private Long id;
 
     @Column(name = "EMAIL", nullable = false, length = 100)

@@ -24,7 +24,7 @@ public class VPService {
     public VP buscarID(Long id){
         Optional<VP> valorPositivo = vpRepository.findById(id);
 
-        if (valorPositivo.isEmpty()){
+        if (valorPositivo.isPresent()){
             return valorPositivo.get();
         }else {
             throw new RuntimeException("VP não encontrado");
@@ -34,7 +34,7 @@ public class VPService {
     public void excluir(Long id){
         Optional<VP> valorPositivo = vpRepository.findById(id);
 
-        if (valorPositivo.isEmpty()){
+        if (valorPositivo.isPresent()){
             vpRepository.deleteById(id);
         }else {
             throw new RuntimeException("vp não encontrado");
@@ -42,8 +42,8 @@ public class VPService {
     }
 
     public VP atualizar(Long id, VP valorPositivo){
-        Optional<VP> VPAtual = vpRepository.findById(id);
-        if (VPAtual.isEmpty()){
+        Optional<VP> vpAtual = vpRepository.findById(id);
+        if (vpAtual.isPresent()){
             return vpRepository.save(valorPositivo);
         }else {
             throw new RuntimeException("VP não encontrado");
