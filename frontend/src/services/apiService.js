@@ -1,3 +1,25 @@
+import axios from 'axios';
+
+const api = axios.create({
+    baseURL: 'http://localhost:8080'
+});
+
+export const registerPF = (pfData) => {
+    return api.post('/api/pf', pfData);
+};
+
+export const registerPJ = (pjData) => {
+    return api.post('/api/pj', pjData);
+};
+
+export const createVP = (vpData) => {
+    return api.post('/api/vp', vpData);
+};
+
+export const createVN = (vnData) => {
+    return api.post('/api/vn', vnData);
+};
+
 const mockData = {
     resumo: {
         valorTotal: "R$ 1.332,00",
@@ -82,20 +104,6 @@ export const getVPs = () => {
 export const getVRs = () => {
     console.log("MOCK API: getVRs() chamado");
     return fakeApiCall(mockData.vrs);
-};
-
-export const createDendron = (dendronData) => {
-    console.log("MOCK API: createDendron() chamado com:", dendronData);
-    const newId = Math.floor(Math.random() * 1000);
-    const novoDendron = {
-        ...dendronData,
-        id: newId,
-        valor: dendronData.valorInicial || "- R$0",
-        transacoes: []
-    };
-    mockData.dendrons.push(novoDendron);
-    
-    return fakeApiCall(novoDendron);
 };
 
 export const getPerfil = () => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createDendron, getVPs, getVRs } from '../services/apiService';
+import { createVP, createVN, getVPs, getVRs } from '../services/apiService';
 
 const dendronColors = {
     VP: '#308A6D',
@@ -81,10 +81,10 @@ export function CreateDendronPage() {
     const [vps, setVps] = useState([]);
     const [vrs, setVrs] = useState([]);
     const [formData, setFormData] = useState({
-        titulo: '',
+        nome: '',
         descricao: '',
         rendimento: '',
-        valorInicial: '',
+        valorTotal: '',
         vpAssociado: '', 
         vrArmazenamento: ''
     });
@@ -103,21 +103,23 @@ export function CreateDendronPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const dataToSend = {
-                tipo,
-                titulo: formData.titulo,
-                descricao: formData.descricao,
-            };
-
             if (tipo === 'VP') {
-                dataToSend.rendimento = formData.rendimento;
-                dataToSend.valorInicial = formData.valorInicial;
-                dataToSend.vrArmazenamento = formData.vrArmazenamento;
+                const vpData = {
+                    nome: formData.nome,
+                    descricao: formData.descricao,
+                    rendimento: parseFloat(formData.rendimento),
+                    valorTotal: parseFloat(formData.valorTotal)
+                };
+                await createVP(vpData);
+
             } else if (tipo === 'VN') {
-                dataToSend.vpAssociado = formData.vpAssociado;
+                const vnData = {
+                    nome: formData.nome,
+                    descricao: formData.descricao
+                };
+                await createVN(vnData);
             }
             
-            await createDendron(dataToSend);
             alert('Dendron criado com sucesso!');
             navigate('/');
         } catch (error) {
@@ -163,7 +165,7 @@ export function CreateDendronPage() {
                         <h3>Dados Base</h3>
                         <div style={styles.formGroup}>
                             <label style={styles.label}>Defina um Título:</label>
-                            <input style={styles.input} type="text" name="titulo" value={formData.titulo} onChange={handleInputChange} placeholder="Ex: Meu Salário" />
+                            <input style={styles.input} type="text" name="nome" value={formData.nome} onChange={handleInputChange} placeholder="Ex: Meu Salário" />
                         </div>
                         <div style={styles.formGroup}>
                             <label style={styles.label}>Descrição:</label>
@@ -196,12 +198,12 @@ export function CreateDendronPage() {
                         {tipo === 'VP' && (
                             <>
                                 <div style={styles.formGroup}>
-                                    <label style={styles.label}>Rendimento:</label>
-                                    <input style={styles.input} type="text" name="rendimento" value={formData.rendimento} onChange={handleInputChange} placeholder="Ex: 14,15%" />
+                                    <label style={styles.label}>Rendimento (%):</label>
+                                    <input style={styles.input} type="number" name="rendimento" value={formData.rendimento} onChange={handleInputChange} placeholder="Ex: 14.15" />
                                 </div>
                                 <div style={styles.formGroup}>
-                                    <label style={styles.label}>Valor Inical:</label>
-                                    <input style={styles.input} type="text" name="valorInicial" value={formData.valorInicial} onChange={handleInputChange} placeholder="Ex: R$ 500,00" />
+                                    <label style={styles.label}>Valor Inicial:</label>
+                                    <input style={styles.input} type="number" name="valorTotal" value={formData.valorTotal} onChange={handleInputChange} placeholder="Ex: 500.00" />
                                 </div>
                             </>
                         )}
