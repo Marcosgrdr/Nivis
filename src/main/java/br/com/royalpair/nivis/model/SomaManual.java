@@ -10,14 +10,14 @@ public class SomaManual extends Soma {
 
 
     @Column(name = "VALOR_SOMA", precision = 10 ,scale = 2)
-    private BigDecimal ValorSoma;
+    private BigDecimal valorSoma;
 
 
     public BigDecimal getValorSoma() {
-        return ValorSoma;
+        return valorSoma;
     }
 
     public void setValorSoma(BigDecimal valorSoma) {
-        ValorSoma = valorSoma;
+        this.valorSoma = valorSoma;
     }
 }
