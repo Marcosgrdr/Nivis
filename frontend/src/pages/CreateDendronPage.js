@@ -1,20 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createDendron, getVPs, getVRs } from '../services/apiService'; 
-import './CreateDendronPage.css';
-
-function StatusMessage({ status, message }) {
-    if (!message) return null;
-    
-    const baseClass = "status-mensagem";
-    const statusClass = status === 'success' ? 'status-success' : 'status-error';
-
-    return (
-        <div className={`${baseClass} ${statusClass}`}>
-            {message}
-        </div>
-    );
-}
+import { createVP, createVN, getVPs, getVRs } from '../services/apiService';
 
 const dendronColors = {
     VP: '#388E3C', 
@@ -30,10 +16,10 @@ export function CreateDendronPage() {
     const [statusMensagem, setStatusMensagem] = useState({ type: '', message: '' });
     
     const [formData, setFormData] = useState({
-        titulo: '',
+        nome: '',
         descricao: '',
         rendimento: '',
-        valorInicial: '',
+        valorTotal: '',
         vpAssociado: '', 
         vrArmazenamento: ''
     });
@@ -75,27 +61,26 @@ export function CreateDendronPage() {
         }
 
         try {
-            const dataToSend = {
-                tipo,
-                titulo: formData.titulo,
-                descricao: formData.descricao,
-            };
-
             if (tipo === 'VP') {
-                dataToSend.rendimento = formData.rendimento;
-                dataToSend.valorInicial = formData.valorInicial;
-                dataToSend.vrArmazenamento = formData.vrArmazenamento;
+                const vpData = {
+                    nome: formData.nome,
+                    descricao: formData.descricao,
+                    rendimento: parseFloat(formData.rendimento),
+                    valorTotal: parseFloat(formData.valorTotal)
+                };
+                await createVP(vpData);
+
             } else if (tipo === 'VN') {
-                dataToSend.vpAssociado = formData.vpAssociado;
+                const vnData = {
+                    nome: formData.nome,
+                    descricao: formData.descricao
+                };
+                await createVN(vnData);
             }
             await createDendron(dataToSend); 
             
-            setStatusMensagem({ type: 'success', message: 'Dendron criado com sucesso!' });
-            
-            setTimeout(() => {
-                navigate('/');
-            }, 2000);
-
+            alert('Dendron criado com sucesso!');
+            navigate('/');
         } catch (error) {
             setStatusMensagem({ type: 'error', message: 'Falha ao criar Dendron. Verifique o console.' });
             console.error("Erro completo ao criar Dendron:", error);
@@ -134,22 +119,12 @@ export function CreateDendronPage() {
             <StatusMessage status={statusMensagem.type} message={statusMensagem.message} />
 
             <form onSubmit={handleSubmit}>
-                <div className="dendron-form-body">
-                    
-                    <div className={`dendron-form-block ${mainBlockClass}`}>
-                        <h3>Dados Base e do Tipo ({tipo})</h3>
-                        
-                        <div className="dendron-form-group">
-                            <label>Defina um Título:</label>
-                            <input 
-                                className="dendron-input" 
-                                type="text" 
-                                name="titulo" 
-                                value={formData.titulo} 
-                                onChange={handleInputChange} 
-                                placeholder="Ex: Meu Salário" 
-                                required
-                            />
+                <div style={styles.formBody}>
+                    <div style={styles.formBlock}>
+                        <h3>Dados Base</h3>
+                        <div style={styles.formGroup}>
+                            <label style={styles.label}>Defina um Título:</label>
+                            <input style={styles.input} type="text" name="nome" value={formData.nome} onChange={handleInputChange} placeholder="Ex: Meu Salário" />
                         </div>
                         
                         <div className="dendron-form-group">
@@ -223,6 +198,19 @@ export function CreateDendronPage() {
                                     ))}
                                 </select>
                             </div>
+                        )}
+
+                        {tipo === 'VP' && (
+                            <>
+                                <div style={styles.formGroup}>
+                                    <label style={styles.label}>Rendimento (%):</label>
+                                    <input style={styles.input} type="number" name="rendimento" value={formData.rendimento} onChange={handleInputChange} placeholder="Ex: 14.15" />
+                                </div>
+                                <div style={styles.formGroup}>
+                                    <label style={styles.label}>Valor Inicial:</label>
+                                    <input style={styles.input} type="number" name="valorTotal" value={formData.valorTotal} onChange={handleInputChange} placeholder="Ex: 500.00" />
+                                </div>
+                            </>
                         )}
                     </div>
                     <div className="dendron-form-block" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)' }}>

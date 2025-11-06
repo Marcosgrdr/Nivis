@@ -9,32 +9,25 @@ export function AuthProvider({ children }) {
 
     const login = async (email, password) => {
         console.log("Tentando login com:", email, password);
-        
-        //Simulação de retorno login API
         const mockUserData = {
             id: 1,
             nome: "Usuário de Teste",
             email: email,
             token: "fake-jwt-token-12345"
         };
-        setUser(mockUserData);
-        navigate('/', { replace: true }); 
-    };
 
-    const register = async (nome, email, password) => {
-        console.log("Registrando:", nome, email, password);
-        await login(email, password);
+        setUser(mockUserData);
+        navigate('/');
     };
 
     const logout = () => {
         setUser(null);
-        navigate('/auth', { replace: true });
+        navigate('/auth');
     };
     const value = {
         isAuthenticated: !!user,
         user,
         login,
-        register,
         logout,
     };
 
