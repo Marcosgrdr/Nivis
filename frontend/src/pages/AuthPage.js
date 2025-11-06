@@ -1,66 +1,21 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-
-const styles = {
-    container: {
-        padding: '20px',
-        maxWidth: '400px',
-        margin: '10vh auto',
-        textAlign: 'center'
-    },
-    tabs: {
-        marginBottom: '30px'
-    },
-    tabButton: {
-        background: 'none',
-        border: 'none',
-        color: '#ccc',
-        fontSize: '1.2em',
-        padding: '10px 15px',
-        cursor: 'pointer'
-    },
-    activeTab: {
-        color: 'white',
-        fontWeight: 'bold',
-        borderBottom: '2px solid #28a745'
-    },
-    form: {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '15px'
-    },
-    input: {
-        backgroundColor: 'rgba(0, 0, 0, 0.2)',
-        border: '1px solid #555',
-        borderRadius: '4px',
-        padding: '12px',
-        color: 'white',
-        fontSize: '1em'
-    },
-    button: {
-        backgroundColor: '#28a745',
-        border: 'none',
-        borderRadius: '4px',
-        padding: '12px',
-        color: 'white',
-        fontSize: '1.1em',
-        fontWeight: 'bold'
-    }
-};
+import './AuthPage.css';
 
 function LoginForm() {
     const { login } = useAuth();
+    const navigate = useNavigate(); 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!email || !senha) {
-            alert("Preencha email e senha");
-            return;
-        }
         try {
             await login(email, senha);
+            
+            navigate('/dashboard'); 
+            
         } catch (error) {
             alert("Falha no login. Verifique os dados.");
             console.error(error);
@@ -68,22 +23,26 @@ function LoginForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={styles.form}>
-        <input 
-            style={styles.input}
-            type="email" 
-            placeholder="Seu email" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} 
-        />
-        <input 
-            style={styles.input}
-            type="password" 
-            placeholder="Senha" 
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)} 
-        />
-        <button style={styles.button} type="submit">ENTRAR</button>
+        <form onSubmit={handleSubmit}>
+            <input 
+                className="input-campo"
+                type="email" 
+                placeholder="Seu email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+            />
+            <input 
+                className="input-campo"
+                type="password" 
+                placeholder="Senha" 
+                value={senha}
+                onChange={(e) => setSenha(e.target.value)} 
+            />
+            <div className="container-senha">
+                <p className="aviso-senha" style={{display: 'none'}}>Mínimo de 8 caracteres.</p>
+            </div>
+            <button className="botao-enviar" type="submit">ENTRAR</button>
+            <a href="#" className="link-esqueceu-senha">Esqueceu sua senha?</a>
         </form>
     );
 }
@@ -109,29 +68,31 @@ function RegisterForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit} style={styles.form}>
-        <input 
-            style={styles.input}
-            type="text" 
-            placeholder="Nome" 
-            value={nome}
-            onChange={(e) => setNome(e.target.value)} 
-        />
-        <input 
-            style={styles.input}
-            type="email" 
-            placeholder="Seu email" 
-            value={email}
-            onChange={(e) => setEmail(e.target.value)} 
-        />
-        <input 
-            style={styles.input}
-            type="password" 
-            placeholder="Senha" 
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)} 
-        />
-        <button style={styles.button} type="submit">CADASTRAR</button>
+        <form onSubmit={handleSubmit} className="form-cadastro-ativo">
+            <input 
+                className="input-campo"
+                type="text" 
+                placeholder="Nome" 
+                value={nome}
+                onChange={(e) => setNome(e.target.value)} 
+            />
+            <input 
+                className="input-campo"
+                type="email" 
+                placeholder="Seu email" 
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} 
+            />
+            <div className="container-senha">
+                <input 
+                    className="input-campo"
+                    type="password" 
+                    placeholder="Senha" 
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)} 
+                />
+            </div>
+            <button className="botao-enviar" type="submit">CADASTRAR</button>
         </form>
     );
 }
@@ -140,32 +101,51 @@ export function AuthPage() {
     const [modo, setModo] = useState('ENTRAR');
 
     return (
-        <div style={styles.container}>
-            <div style={styles.tabs}>
-                <button 
-                onClick={() => setModo('ENTRAR')}
-                style={{
-                    ...styles.tabButton, 
-                    ...(modo === 'ENTRAR' && styles.activeTab)
-                }}
-                >
-                ENTRAR
-                </button>
-                <button 
-                onClick={() => setModo('CADASTRAR')}
-                style={{
-                    ...styles.tabButton, 
-                    ...(modo === 'CADASTRAR' && styles.activeTab)
-                }}
-                >
-                CADASTRAR
-                </button>
+        <> 
+        <img 
+            src="/assets/images/snowflake 2.png"
+            alt="Ícone de Floco de Neve" 
+            className="floco-neve-img icone-global" 
+        />
+        <div className="container"> 
+            
+            <div className="painel-esquerda">
+                <div className="cabecalho">
+                    <h1 className="logotipo">Nivis</h1> 
+                </div>
+                <div className="informacao">
+                    <h2>Vamos juntos organizar<br/> suas finanças</h2>
+                    <div className="imagem-moeda">
+                        <img 
+                            src="/assets/images/money 1.png"
+                            alt="moeda-ilustração"
+                        />
+                    </div>
+                </div>
             </div>
 
-            <div style={{ marginTop: '20px' }}>
-                {modo === 'ENTRAR' && <LoginForm />}
-                {modo === 'CADASTRAR' && <RegisterForm />}
+            <div className="painel-direita">
+                <div className="container-formulario">
+                    <div className="abas"> 
+                        <button 
+                            onClick={() => setModo('ENTRAR')}
+                            className={`aba-entrar ${modo === 'ENTRAR' ? 'ativo' : ''}`} 
+                        >
+                            ENTRAR
+                        </button>
+                        <button 
+                            onClick={() => setModo('CADASTRAR')}
+                            className={`aba-cadastrar ${modo === 'CADASTRAR' ? 'ativo' : ''}`}
+                        >
+                            CADASTRAR
+                        </button>
+                    </div>
+                    
+                    {modo === 'ENTRAR' && <LoginForm />}
+                    {modo === 'CADASTRAR' && <RegisterForm />}
+                </div>
             </div>
         </div>
+        </>
     );
 }

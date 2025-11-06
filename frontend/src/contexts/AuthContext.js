@@ -8,40 +8,40 @@ export function AuthProvider({ children }) {
     const navigate = useNavigate();
 
     const login = async (email, password) => {
-    console.log("Tentando login com:", email, password);
-    const mockUserData = {
-        id: 1,
-        nome: "Usuário de Teste",
-        email: email,
-        token: "fake-jwt-token-12345"
-    };
-
-    setUser(mockUserData);
-    navigate('/');
+        console.log("Tentando login com:", email, password);
+        
+        //Simulação de retorno login API
+        const mockUserData = {
+            id: 1,
+            nome: "Usuário de Teste",
+            email: email,
+            token: "fake-jwt-token-12345"
+        };
+        setUser(mockUserData);
+        navigate('/', { replace: true }); 
     };
 
     const register = async (nome, email, password) => {
-    console.log("Registrando:", nome, email, password);
-    await login(email, password);
+        console.log("Registrando:", nome, email, password);
+        await login(email, password);
     };
 
     const logout = () => {
-    setUser(null);
-    navigate('/auth');
+        setUser(null);
+        navigate('/auth', { replace: true });
     };
-
     const value = {
-    isAuthenticated: !!user,
-    user,
-    login,
-    register,
-    logout,
+        isAuthenticated: !!user,
+        user,
+        login,
+        register,
+        logout,
     };
 
     return (
-    <AuthContext.Provider value={value}>
-        {children}
-    </AuthContext.Provider>
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
     );
 }
 

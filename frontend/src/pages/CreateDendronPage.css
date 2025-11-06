@@ -1,0 +1,230 @@
+
+create-dendron-page * {
+    box-sizing: border-box;
+}
+
+.dendron-form-container {
+    max-width: 900px; 
+    margin: 30px auto;
+    background-color: #12344B;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.dendron-opcoes {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dendron-opcoes .caixa-tipo {
+    display: block;
+    background-color: #004E6B; 
+    color: #ffffff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dendron-botoes-tipo {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.botao-tipo-dendron {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+    background-color: transparent;
+    color: #ffffff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.botao-tipo-dendron.ativo-VP {
+    background-color: #388E3C; 
+    border-color: #388E3C;
+}
+
+.botao-tipo-dendron.ativo-VN {
+    background-color: #B71C1C;
+    border-color: #B71C1C;
+}
+
+.botao-tipo-dendron.ativo-VI {
+    background-color: #D78218; 
+    border-color: #D78218;
+}
+
+.botao-tipo-dendron.ativo-VR {
+    background-color: #0B5F89; 
+    border-color: #0B5F89;
+}
+
+.dendron-form-body {
+    display: flex;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 30px;
+    flex-wrap: wrap; 
+}
+
+
+.dendron-form-block {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.bloco-VP {
+    background-color: #2E7D32; 
+}
+
+.bloco-VN {
+    background-color: #B71C1C; 
+}
+
+
+.dendron-form-block h3 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+    margin-top: 0; 
+}
+
+.dendron-form-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Labels */
+.dendron-form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    font-weight: normal; 
+}
+
+.bloco-VP label {
+    color: #C8E6C9;
+}
+
+.bloco-VN label {
+    color: #FFCDD2;
+}
+
+
+.dendron-input {
+    width: 100%;
+    padding: 8px 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 5px;
+    color: #161616;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.dendron-input::placeholder {
+    color: #A9A9A9;
+    font-style: italic;
+    font-size: 14px;
+}
+
+.botao-confirmar-final {
+    background-color: #1B5E20;
+    color: #ffffff;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: auto; 
+    display: block;
+    margin: 0 auto;
+}
+
+.botao-confirmar-final:hover {
+    background-color: #2E7D32;
+}
+
+.dendron-radio-group .opcoes-radio label {
+    display: inline-block;
+    color: #ffffff;
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+.dendron-radio-group .opcoes-radio input[type="radio"] {
+    margin-right: 5px;
+}
+
+.botao-confirmar-repetir {
+    background-color: #008cd2;
+    color: #ffffff;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 10px;
+    float: right;
+}
+
+.status-mensagem {
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.status-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+@media (max-width: 768px) {
+    .dendron-form-container {
+        margin: 20px;
+        padding: 15px;
+    }
+    
+    .dendron-form-body {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .dendron-form-block {
+        min-width: 100%;
+    }
+
+    .botao-confirmar-final {
+        width: 100%;
+    }
+}
