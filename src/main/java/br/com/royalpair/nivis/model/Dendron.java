@@ -33,6 +33,9 @@ public abstract class Dendron {
     @OneToMany(mappedBy = "idDendron")
     private List<Reducao> reducoes;
 
+    @OneToMany(mappedBy = "idDendron")
+    private List<Soma> somas;
+
 
     public Long getId() {
         return id;
@@ -72,5 +75,21 @@ public abstract class Dendron {
 
     public void setIdUser(Usuario idUser) {
         this.idUser = idUser;
+    }
+
+    public List<Reducao> getReducoes() {
+        return reducoes;
+    }
+
+    public void setReducoes(List<Reducao> reducoes) {
+        this.reducoes = reducoes;
+    }
+
+    public List<Soma> getSomas() {
+        return somas;
+    }
+
+    public void setSomas(List<Soma> somas) {
+        this.somas = somas;
     }
 }
