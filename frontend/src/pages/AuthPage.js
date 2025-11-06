@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { registerPF, registerPJ } from '../services/apiService';
@@ -56,17 +57,17 @@ const styles = {
 
 function LoginForm() {
     const { login } = useAuth();
+    const navigate = useNavigate(); 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!email || !senha) {
-            alert("Preencha email e senha");
-            return;
-        }
         try {
             await login(email, senha);
+            
+            navigate('/dashboard'); 
+            
         } catch (error) {
             alert("Falha no login. Verifique os dados.");
             console.error(error);
@@ -210,32 +211,51 @@ export function AuthPage() {
     const [modo, setModo] = useState('ENTRAR');
 
     return (
-        <div style={styles.container}>
-            <div style={styles.tabs}>
-                <button 
-                onClick={() => setModo('ENTRAR')}
-                style={{
-                    ...styles.tabButton, 
-                    ...(modo === 'ENTRAR' && styles.activeTab)
-                }}
-                >
-                ENTRAR
-                </button>
-                <button 
-                onClick={() => setModo('CADASTRAR')}
-                style={{
-                    ...styles.tabButton, 
-                    ...(modo === 'CADASTRAR' && styles.activeTab)
-                }}
-                >
-                CADASTRAR
-                </button>
+        <> 
+        <img 
+            src="/assets/images/snowflake 2.png"
+            alt="Ícone de Floco de Neve" 
+            className="floco-neve-img icone-global" 
+        />
+        <div className="container"> 
+            
+            <div className="painel-esquerda">
+                <div className="cabecalho">
+                    <h1 className="logotipo">Nivis</h1> 
+                </div>
+                <div className="informacao">
+                    <h2>Vamos juntos organizar<br/> suas finanças</h2>
+                    <div className="imagem-moeda">
+                        <img 
+                            src="/assets/images/money 1.png"
+                            alt="moeda-ilustração"
+                        />
+                    </div>
+                </div>
             </div>
 
-            <div style={{ marginTop: '20px' }}>
-                {modo === 'ENTRAR' && <LoginForm />}
-                {modo === 'CADASTRAR' && <RegisterForm />}
+            <div className="painel-direita">
+                <div className="container-formulario">
+                    <div className="abas"> 
+                        <button 
+                            onClick={() => setModo('ENTRAR')}
+                            className={`aba-entrar ${modo === 'ENTRAR' ? 'ativo' : ''}`} 
+                        >
+                            ENTRAR
+                        </button>
+                        <button 
+                            onClick={() => setModo('CADASTRAR')}
+                            className={`aba-cadastrar ${modo === 'CADASTRAR' ? 'ativo' : ''}`}
+                        >
+                            CADASTRAR
+                        </button>
+                    </div>
+                    
+                    {modo === 'ENTRAR' && <LoginForm />}
+                    {modo === 'CADASTRAR' && <RegisterForm />}
+                </div>
             </div>
         </div>
+        </>
     );
 }

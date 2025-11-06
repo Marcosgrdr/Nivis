@@ -1,0 +1,108 @@
+.dendron-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 16px;
+    color: white;
+    transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.dendron-card:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dendron-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    cursor: pointer;
+    user-select: none; 
+}
+
+.dendron-header-title-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.dendron-insignia {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #FFFFFF;
+    font-size: 0.9em;
+}
+
+.dendron-title {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.dendron-valor {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.valor-positivo {
+    color: #4CAF50;
+}
+
+.valor-negativo {
+    color: #F44336; 
+}
+
+.dendron-card-body {
+    padding: 0 16px 16px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.dendron-descricao {
+    font-size: 0.9em;
+    margin-bottom: 16px;
+    margin-top: 10px;
+}
+
+.transacao-header {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 0.8fr 1fr;
+    font-weight: bold;
+    font-size: 0.8em;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.transacao-row {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 0.8fr 1fr; 
+    font-size: 0.9em;
+    padding: 5px 0;
+}
+
+@media (max-width: 480px) {
+    .transacao-header,
+    .transacao-row {
+        grid-template-columns: 1fr 1fr; 
+        gap: 5px;
+        padding: 5px 0;
+    }
+    
+    .transacao-header span:nth-child(3), 
+    .transacao-header span:nth-child(4),
+    .transacao-row span:nth-child(3),
+    .transacao-row span:nth-child(4) {
+        display: none; 
+    }
+}
+
+/* Animação */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

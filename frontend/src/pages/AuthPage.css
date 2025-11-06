@@ -1,0 +1,220 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    position: relative;
+}
+
+/* Divisão das telas */
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.floco-neve-img.icone-global {
+    width: 45px; 
+    height: 45px; 
+    object-fit: contain;
+    position: absolute;
+    top: 20px; 
+    right: 40px; 
+    z-index: 10; 
+}
+
+/* Painel Esquerda (60%) */
+.painel-esquerda {
+    width: 60%;
+    background-color: #2B6EFF;
+    color: #ffffff;
+    padding: 10px 40px; 
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logotipo {
+    font-size: 32px;
+    font-weight: bold;
+}
+
+.informacao {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: flex-start; 
+    padding-left: 15%; 
+    max-width: 700px;
+}
+
+.informacao h2 {
+    font-family: 'Arial', Times, serif;
+    font-size: 36px;
+    font-weight: 500; 
+    margin-bottom: 40px;
+    margin-left: 0; 
+    line-height: 1.2;
+    text-align: left;
+}
+
+.imagem-moeda {
+    padding-left: 0; 
+    margin-top: 30px; 
+}
+
+.imagem-moeda img{
+    max-width: 350px; 
+    height: auto;
+    display: block;
+}
+
+/* Painel Direita (40%) */
+.painel-direita {
+    width: 40%; 
+    background-color: #2B6EFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.container-formulario {
+    width: 100%;
+    max-width: 350px;
+    padding: 0; 
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
+
+/* Abas */
+.abas {
+    display: flex;
+    justify-content: flex-start; 
+    width: 100%;
+    margin-bottom: 30px;
+    padding-left: 0px; 
+    gap: 40px; 
+}
+
+.aba-cadastrar,
+.aba-entrar {
+    font-size: 18px;
+    font-weight: bold;
+    color: #dbdbdb; 
+    cursor: pointer;
+    padding-bottom: 5px;
+    border-bottom: 3px solid transparent; 
+    padding-left: 30px;
+    padding-right: 30px;
+    background: none;
+    outline: none;
+    border: none;
+}
+
+.aba-entrar.ativo,
+.aba-cadastrar.ativo {
+    color: #ffffff;
+    border-bottom: 3px solid #1AFF00; 
+}
+
+/* Formulários */
+.formulario-auth { 
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+}
+
+/* Campos de input */
+.input-campo {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-bottom: 1px solid #ffffff; 
+    outline: none;
+    font-size: 16px;
+    background-color: transparent; 
+    border-radius: 0;
+    color: #ffffff; 
+}
+
+.input-campo:focus {
+    outline: none;
+}
+
+input::placeholder {
+    color: #ffffff;
+    opacity: 0.8; 
+    font-size: 16px;
+}
+
+/* Mensagem de erro (substituindo alert) */
+.mensagem-erro-alerta {
+    color: #ffdddd; 
+    background-color: #8b0000;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+.container-senha {
+    position: relative;
+    margin-bottom: 0;
+}
+
+.aviso-senha {
+    color: yellow; 
+    font-size: 12px;
+    position: absolute;
+    bottom: -18px;
+    left: 0;
+    width: 100%;
+    font-weight: bold;
+}
+
+
+.botao-enviar {
+    width: 100%;
+    padding: 15px; 
+    background-color: #ffffff;
+    color: #0f0f0f; 
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.botao-enviar:hover {
+    background-color: #f0f0f0;
+}
+
+/* Link Esqueceu Senha */
+.link-esqueceu-senha {
+    display: block;
+    text-align: center;
+    margin-top: 20px; 
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+}

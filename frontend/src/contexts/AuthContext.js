@@ -24,7 +24,6 @@ export function AuthProvider({ children }) {
         setUser(null);
         navigate('/auth');
     };
-
     const value = {
         isAuthenticated: !!user,
         user,

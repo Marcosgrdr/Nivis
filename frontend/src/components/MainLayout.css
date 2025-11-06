@@ -1,0 +1,184 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.painel-principal {
+    display: flex;
+    flex-direction: column;
+    height: 100%; 
+    width: 100%;
+    background-image: linear-gradient(to bottom, #004E6B, #0099D1); 
+    color: #ffffff;
+}
+
+.navbar-dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #12344B; 
+    padding: 10px 20px;
+    height: 60px;
+    font-size: 14px;
+}
+
+.menu-esquerda {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.menu-direita {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icone-menu {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.usuario-info {
+    font-weight: bold;
+    color: #C8E6C9; 
+}
+
+.usuario-avatar {
+    background-color: #388E3C;
+    color: #ffffff;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    font-size: 12px;
+}
+
+.localizacao {
+    color: #c3c3c3;
+}
+
+.logotipo-dashboard {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.logotipo-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.perfil-link {
+    text-decoration: none;
+    color: inherit; 
+    cursor: pointer; 
+    display: inline-flex; 
+    align-items: center;
+}
+
+/* Botão Sair */
+.botao-sair {
+    background-color: #f44336; 
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-left: 20px;
+}
+
+.botao-sair:hover {
+    background-color: #d32f2f;
+}
+
+.conteudo-principal-layout {
+    flex-grow: 1; 
+    padding: 20px;
+}
+
+.resumo-financeiro {
+    background-color: transparent; 
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    padding: 20px 0;
+    min-height: 100px;
+}
+
+.cartao-valor {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.caixa {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #CFD8DC;
+}
+
+.valor-caixa {
+    background-color: #ffffff;
+    color: #161616; 
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    min-width: 150px;
+}
+
+.conteudo-principal {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.icone-central-grande {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 60px;
+}
+
+.mensagem-sem-registros {
+    font-size: 20px;
+    line-height: 1.5;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.botao-novo-dendron {
+    background-color: #1B5E20;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.botao-novo-dendron:hover {
+    background-color: #2E7D32;
+}
+
